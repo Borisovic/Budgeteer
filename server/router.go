@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -13,6 +12,11 @@ type Route struct {
 	PageRoute string
 }
 
+type RouteData struct {
+	Routes      []Route
+	ActiveRoute Route
+}
+
 func HandleRoute(c echo.Context) error {
 
 	routes := []Route{
@@ -20,12 +24,10 @@ func HandleRoute(c echo.Context) error {
 		{PageTitle: "About", PageRoute: "/about"},
 	}
 
-	fmt.Println(c.Request().RequestURI)
-
 	routeIndex := slices.IndexFunc(routes, func(r Route) bool { return r.PageRoute == c.Request().RequestURI })
 	if routeIndex == -1 {
 		return c.Render(http.StatusNotFound, "not-found", nil)
 	}
 
-	return c.Render(http.StatusOK, "index.html", routes[routeIndex])
+	return c.Render(http.StatusOK, "index.html", RouteData{Routes: routes, ActiveRoute: routes[routeIndex]})
 }

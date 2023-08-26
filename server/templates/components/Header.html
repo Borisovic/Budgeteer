@@ -1,10 +1,16 @@
 {{ define "header" }}
-<div class="w-full p-2 flex align-middle gap-2 bg-red-500">
-    <a href="/">
-        Home
-    </a>
-    <a href="/about">
-        About
-    </a>
+<div class="w-full flex flex-row bg-pink-400 items-center">
+    <h4 class="m-0 p-0 px-3 block text-lg font-bold text-white">Budgeteer</h4>
+        {{ range .Routes }}
+            {{ if eq $.ActiveRoute.PageRoute .PageRoute }}
+                <a class="p-3 transition-colors bg-pink-300 pointer-events-none" href="{{.PageRoute}}">
+                    {{ .PageTitle }}
+                </a>
+            {{  else }}
+                <a class="p-3 hover:bg-pink-300 transition-colors" href="{{.PageRoute}}">
+                    {{ .PageTitle }}
+                </a>
+            {{ end }}
+        {{ end }}
 </div>
 {{ end }}
