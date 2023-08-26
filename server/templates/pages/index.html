@@ -12,8 +12,10 @@
 </head>
 <body>
     <!-- Header -->
-    {{ template "header" }}
-    
+    {{ if not (eq .PageRoute "/login") }}
+        {{ template "header" }}
+    {{ end }}
+
     {{ if eq .PageRoute "/"}}
         {{ template "home" }}
     {{ else if eq .PageRoute "/about"}}

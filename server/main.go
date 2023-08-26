@@ -20,11 +20,12 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 func main() {
 
 	t := &Template{
-		templates: template.Must(template.ParseGlob("../templates/**/*.html")),
+		templates: template.Must(template.ParseGlob("./templates/**/*.html")),
 	}
 
 	e := echo.New()
 	e.Renderer = t
+	e.Static("/static", "../static")
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Gzip())
@@ -36,5 +37,5 @@ func main() {
 		return c.String(http.StatusOK, "Some sort of info from an API")
 	})
 
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start("localhost:8080"))
 }
