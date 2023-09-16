@@ -2,8 +2,7 @@ package main
 
 import (
 	"io"
-
-	"internal/router"
+	"router"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/template/django/v3"
@@ -15,7 +14,7 @@ type Views interface {
 }
 
 func main() {
-	engine := django.New("../../web/templates", ".django")
+	engine := django.New("../../web/views", ".django")
 
 	app := fiber.New(fiber.Config{
 		Views: engine,

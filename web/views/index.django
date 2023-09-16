@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgeteer</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5"
+        integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body style="height: 100vh; width: 100vw; overflow: hidden">
+    {% comment %} Container {% endcomment %}
+    <div class="flex flex-col overflow-hidden w-full h-full">
+        <!-- Header -->
+        <div class="flex flex-row flex-shrink w-full bg-red-500 items-center">
+            {% for route in routes %}
+                {% include "./components/navigation-button.django" %}
+            {% endfor %}
+        </div>
+
+        <!-- Content -->
+        <div id="content" class="flex-grow w-full">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</body>
+
+</html>
