@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budgeteer</title>
+    <script src="https://unpkg.com/htmx.org@1.9.5"
+        integrity="sha384-xcuj3WpfgjlKF+FXhSQFQ0ZNr39ln+hwjN3npfM9VBnUskLolQAcN80McRIVOPuO"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <progress id="page-loader" class="htmx-indicator" max="100"></progress>
+    <!-- Header -->
+    <div>
+        <ul>
+            <li hx-get="/" hx-target="#content" hx-swap="innerHtml" hx-push-url="true" hx-indicator="#page-loader">
+                Home
+            </li>
+            <li hx-get="/about" hx-target="#content" hx-swap="innerHtml" hx-push-url="true" hx-indicator="#page-loader">
+                About
+            </li>
+        </ul>
+    </div>
+    <!-- Content -->
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>

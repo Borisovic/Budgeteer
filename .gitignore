@@ -1,4 +1,0 @@
-# Build tools that dont need to be on git
-**/*tailwindcss.exe
-**/*go.sum
-**/tmp
